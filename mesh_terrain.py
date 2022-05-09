@@ -1,6 +1,6 @@
 from re import S, U
 from perlin_noise import PerlinNoise
-from ursina import Entity, load_model, load_texture, Mesh, Vec3, Vec2
+from ursina import Entity, load_model, load_texture, Mesh, Vec3, Vec2, Vec4
 from perlin import Perlin
 from math import floor
 
@@ -16,6 +16,7 @@ class MeshTerrain:
         self.freq = 100
         self.amp = 20
         self.terrain_dict = {}
+        self.vertices = len(self.block.vertices)
         
         
         for i in range(self.num_subsets):
@@ -32,11 +33,13 @@ class MeshTerrain:
         model.vertices.extend([ Vec3(x, y, z) + v for v in self.block.vertices])
         
         
+        c = .8
+        
+        model.colors.extend((Vec4(1-c, 1-c, 1-c, 1)) * self.vertices)
         # coordinates for grass in the texture atlas
         uu = 8
         uv = 7
         
-        print(y)
         if y > -5:
             uu = 8
             uv = 6

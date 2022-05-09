@@ -8,8 +8,9 @@ window.color = color.rgb(0, 200, 255)
 indra = Sky()
 indra.color = window.color
 subject = FirstPersonController()
-
 subject.gravity = 0
+subject.cursor.visible = False
+window.fullscreen = True
 
 terrain = MeshTerrain()
 
